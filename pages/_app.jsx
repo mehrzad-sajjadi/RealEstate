@@ -1,8 +1,8 @@
 //components
-import Header from "@/components/Header";
-import Sidebar from "@/components/Sidebar";
-import Footer from "@/components/Footer";
-import RealTors from "@/components/RealTors";
+import Header from "@/components/layout/Header";
+import Sidebar from "@/components/layout/Sidebar";
+import Footer from "@/components/layout/Footer";
+import RealTors from "@/components/layout/RealTors";
 
 import "@/styles/globals.css";
 

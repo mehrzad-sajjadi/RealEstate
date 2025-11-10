@@ -38,10 +38,24 @@ export default function selection() {
         setSelectedCity(e.target.value);
     };
 
+    // Emit
+    const [dataFromChild, setDataFromChild] = useState();
+    function handleDataFromChild(data) {
+        setDataFromChild(data);
+    }
+    useEffect(() => {
+        console.log(dataFromChild);
+    }, [dataFromChild])
+
     return (
         <div>
-            <RSelect label="کشور" arrays={countries}></RSelect>
+            <RSelect arrays={countries} sendDataToParent={handleDataFromChild} ></RSelect>
 
+            {dataFromChild &&
+                <p className="bg-gray-500">
+                    {dataFromChild}
+                </p>
+            }
 
             {/* <select id="country" value={selectedCountry} onChange={handleCountryChange}>
                 <option value="">Select a country</option>

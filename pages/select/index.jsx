@@ -40,45 +40,35 @@ export default function selection() {
 
 
     // Emit
+    //مقادیر دریافت شده از فرزند
     const [countryId, setCountryId] = useState();
-    function handleDataFromChild(data) {
+    function recivedCountry(data) {
         setCountryId(data);
     }
-    useEffect(() => {
-        console.log(countryId);
-    }, [countryId])
+    // const accessCities=[];
+    const [accessCities,setAccessCities] = useState([]);
+    useEffect(()=>{
+        setAccessCities(cities.filter((e)=>e.country_id==countryId));
+    },[countryId])
+    const [cityId,setCityId] =useState();
+    function recivedCity(param){
+        setCityId(param);
+    }
+    
 
     return (
         <div>
-            <RSelect arrays={countries} sendDataToParent={handleDataFromChild} ></RSelect>
-
+            <RSelect arrays={countries} sendDataToParent={recivedCountry} title="choos country"></RSelect>
+            
             {countryId &&
                 <p className="bg-gray-500">
                     {countryId}
                 </p>
             }
-
-            {/* <select id="country" value={selectedCountry} onChange={handleCountryChange}>
-                <option value="">Select a country</option>
-                {countries.map((country) => (
-                    <option key={country.id} value={country.id}>
-                        {country.name}
-                    </option>
-                ))}
-            </select>
-
-
-            {selectedCountry &&
-                <select onChange={handleCityChange} value={selectedCity}>
-                    <option value="">Choos city</option>
-                    {availableCities.map((city) => (
-                        <option key={city.id} value={city.id}>
-                            {city.name}
-                        </option>
-                    ))}
-                </select>
-            }  */}
-
+            {countryId &&
+                <RSelect arrays={accessCities} sendDataToParent={recivedCity} title="choos city"></RSelect>
+            }
+            
         </div>
 
     );

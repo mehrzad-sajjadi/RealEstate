@@ -1,14 +1,8 @@
-import { useEffect, useState } from "react";
-
 //sendDataToParent در زمانی که این تابع اجرا بشه پارامتر داخلش به والد ارسال میشه
 export default function RSelect({ arrays,sendDataToParent,title }) {
-    const [data,setData] = useState();
-    function test(e){
-        setData(e.target.value);
-    }
-    useEffect(()=>{
-        sendDataToParent(data);
-    },[data]);
+    function test(event){
+        sendDataToParent(event.target.value);
+    };
 
     return (
         <div className="flex flex-col mx-10">

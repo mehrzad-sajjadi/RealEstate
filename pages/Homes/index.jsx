@@ -5,6 +5,7 @@ export default function AllHomes() {
     const [search, setSearch] = useState('');
     const [result, setResult] = useState([...db.homes]);
     const [sort, setSort] = useState("-1");
+    const [pagination,setPagination] = useState(6);
 
     const handleSearch = (e) => {
         setSearch(e.target.value);
@@ -38,11 +39,7 @@ export default function AllHomes() {
             }
         }
     }, [sort]);
-    // useEffect(() => {
-    //     const newHomes = result.toSorted((a, b) => a.price - b.price);
-    //     setResult(newHomes);
-    // })
-
+    
     return (
         <div className="home-section" id="houses">
             <div className="home-filter-search">
@@ -66,9 +63,11 @@ export default function AllHomes() {
                 }
             </div>
             <ul className="pagination__list">
-                <li className="pagination__item"><a href="#" className="">  </a></li>
-                <li className="pagination__item"><a href="#" className="">2</a></li>
-                <li className="pagination__item active"><a href="#" className="">1</a></li>
+                {
+                    Array.from({length: Math.ceil(result.length / pagination) }).map((item,index)=>(
+                        <li key={index} className="pagination__item active"><a href="#" className="">{index+1}</a></li>
+                    ))
+                }
             </ul>
         </div>
     )

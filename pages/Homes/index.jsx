@@ -6,7 +6,7 @@ export default function AllHomes() {
     const [search, setSearch] = useState('');
     const [result, setResult] = useState([...db.homes]);
     const [sort, setSort] = useState("-1");
-    const [pagination,setPagination] = useState(6);
+    const [pagination, setPagination] = useState(6);
 
     const handleSearch = (e) => {
         setSearch(e.target.value);
@@ -35,12 +35,12 @@ export default function AllHomes() {
                 setResult(sortedHomes);
                 break;
             }
-            default:{
+            default: {
                 setResult([...db.homes]);
             }
         }
     }, [sort]);
-    function pagainateHandler(event,page){
+    function pagainateHandler(event, page) {
         event.preventDefault();
         console.log(page);
     }
@@ -62,16 +62,16 @@ export default function AllHomes() {
             </div>
             <div className="homes">
                 {
-                    result.slice(0,3).map((home) => {
-                        return <HomeCard key={home.id} {...home} />
-                    })
+                    result.slice(0, 3).map((home, index) => (
+                        <HomeCard key={index} {...home} />
+                    ))
                 }
             </div>
             <ul className="pagination__list">
                 {
-                    Array.from({length: Math.ceil(result.length / pagination) }).map((item,index)=>(
-                        <li key={index} onClick={(event)=>pagainateHandler(event,index+1)} className="pagination__item active">
-                            <a href="/asdsa" className="">{index+1}</a>
+                    Array.from({ length: Math.ceil(result.length / pagination) }).map((item, index) => (
+                        <li key={index} onClick={(event) => pagainateHandler(event, index + 1)} className="pagination__item active">
+                            <a href="/asdsa" className="">{index + 1}</a>
                         </li>
                     ))
                 }

@@ -3,27 +3,52 @@ import db from "@/data/db.json"
 import { useEffect, useState } from "react";
 export default function AllHomes() {
     const [search, setSearch] = useState('');
-    const [result,setResult] = useState([...db.homes]);
-    const [sort,setSort] =useState("");
-    
+    const [result, setResult] = useState([...db.homes]);
+    const [sort, setSort] = useState("-1");
+
     const handleSearch = (e) => {
         setSearch(e.target.value);
     }
-    
-    useEffect(()=>{
-        setResult(()=>{
-            return db.homes.filter((e)=>e.title.includes(search));
+
+    useEffect(() => {
+        setResult(() => {
+            return db.homes.filter((e) => e.title.includes(search));
         });
-    },[search]);
+    }, [search]);
 
-
+    useEffect(() => {
+        switch (sort) {
+            case "price": {
+                const sortedHomes = result.toSorted((a, b) => a.price - b.price);
+                setResult(sortedHomes);
+                break;
+            }
+            case "roomCount": {
+                const sortedHomes = result.toSorted((a, b) => a.roomCount - b.roomCount);
+                setResult(sortedHomes);
+                break;
+            }
+            case "meterage": {
+                const sortedHomes = result.toSorted((a, b) => a.meterage - b.meterage);
+                setResult(sortedHomes);
+                break;
+            }
+            default:{
+                setResult([...db.homes]);
+            }
+        }
+    }, [sort]);
+    // useEffect(() => {
+    //     const newHomes = result.toSorted((a, b) => a.price - b.price);
+    //     setResult(newHomes);
+    // })
 
     return (
         <div className="home-section" id="houses">
             <div className="home-filter-search">
                 <div className="home-filter">
-                    <select defaultValue={sort} onChange={changeHandle} >
-                        <option value="" selected>انتخاب کنید</option>
+                    <select onChange={(e) => setSort(e.target.value)} defaultValue={sort} >
+                        <option value="-1" >انتخاب کنید</option>
                         <option value="price">بر اساس قیمت</option>
                         <option value="roomCount">بر اساس تعداد اتاق</option>
                         <option value="meterage">بر اساس اندازه</option>

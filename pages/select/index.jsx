@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import RSelect from "@/components/template/Index/RSelect";
 
 export default function selection() {
@@ -37,7 +37,7 @@ export default function selection() {
     return (
         <div className="">
             <div className="w-full flex max-h-max ">
-                <RSelect arrays={countries} sendDataToParent={recivedCountry} title="choos country"></RSelect>
+                <RSelect arrays={countries} sendDataToParent={recivedCountry} title="choos country" />
 
                 {countryId &&
                     <p className="bg-gray-500">
@@ -45,7 +45,7 @@ export default function selection() {
                     </p>
                 }
                 {countryId &&
-                    <RSelect arrays={accessCities} sendDataToParent={recivedCity} title="choos city"></RSelect>
+                    <RSelect arrays={accessCities} sendDataToParent={recivedCity} title="choos city" />
                 }
             </div>
         </div>

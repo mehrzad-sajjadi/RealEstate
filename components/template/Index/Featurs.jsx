@@ -3,9 +3,12 @@ export default function Featurs(){
         <div className="featurs">
             <div className="featur">
                 <svg className="featur__icon">
-                    {/* <use xlink:href="img/sprite.svg#icon-global"></use> */}
+                    <use xlinkHref="img/sprite.svg#icon-global"></use>
                 </svg>
-                <h4 className="u-heading--dark">بهترین خانه های لوکس جهان</h4>
+                <h4 className="u-heading--dark">
+                    بهترین خانه های لوکس جهان
+
+                </h4>
                 <p className="u-paragraph">
                     نکته بعدی در مورد متن ساختگی لورم ایپسوم این است که بعضی
                     از طراحان وبسایت و گرافیست کاران بعد از آنکه قالب و
@@ -15,7 +18,7 @@ export default function Featurs(){
 
             <div className="featur">
                 <svg className="featur__icon">
-                    {/* <use xlink:href="img/sprite.svg#icon-map-pin"></use> */}
+                    <use xlinkHref="img/sprite.svg#icon-map-pin"></use>
                 </svg>
                 <h4 className="u-heading--dark">
                     همه خانه ها در مکان های برتر
@@ -27,7 +30,7 @@ export default function Featurs(){
             </div>
             <div className="featur">
                 <svg className="featur__icon">
-                    {/* <use xlink:href="img/sprite.svg#icon-key"></use> */}
+                    <use xlinkHref="img/sprite.svg#icon-key"></use>
                 </svg>
                 <h4 className="u-heading--dark">خانه جدید در یک هفته</h4>
                 <p className="u-paragraph">
@@ -39,7 +42,7 @@ export default function Featurs(){
             <div className="featur">
                 <svg className="featur__icon">
                     <use
-                        // xlink:href="img/sprite.svg#icon-presentation"
+                        xlinkHref="img/sprite.svg#icon-presentation"
                     ></use>
                 </svg>
                 <h4 className="u-heading--dark">فقط بهترین خواص</h4>
@@ -51,7 +54,7 @@ export default function Featurs(){
             </div>
             <div className="featur">
                 <svg className="featur__icon">
-                    {/* <use xlink:href="img/sprite.svg#icon-lock"></use> */}
+                    <use xlinkHref="img/sprite.svg#icon-lock"></use>
                 </svg>
                 <h4 className="u-heading--dark">پرداخت های ایمن در بعدی</h4>
                 <p className="u-paragraph">
@@ -62,7 +65,7 @@ export default function Featurs(){
             </div>
             <div className="featur">
                 <svg className="featur__icon">
-                    {/* <use xlink:href="img/sprite.svg#icon-trophy"></use> */}
+                    <use xlinkHref="img/sprite.svg#icon-trophy"></use>
                 </svg>
                 <h4 className="u-heading--dark">1% مشاوران املاک برتر</h4>
                 <p className="u-paragraph">

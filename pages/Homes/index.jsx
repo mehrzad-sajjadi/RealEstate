@@ -7,17 +7,18 @@ export default function AllHomes() {
     const [result, setResult] = useState([...db.homes]);
     const [sort, setSort] = useState("-1");
     const [pagination, setPagination] = useState(6);
+    const pageSize = 3;
 
+
+    //start Filters 
     const handleSearch = (e) => {
         setSearch(e.target.value);
     }
-
     useEffect(() => {
         setResult(() => {
             return db.homes.filter((e) => e.title.includes(search));
         });
     }, [search]);
-
     useEffect(() => {
         switch (sort) {
             case "price": {
@@ -40,12 +41,19 @@ export default function AllHomes() {
             }
         }
     }, [sort]);
+    //end Filters 
+
+
     function pagainateHandler(event, page) {
         event.preventDefault();
-        console.log(page);
+        const endIndex = page * 3;
+        const startIndex = endIndex - 3
+        console.log(db.homes.slice(startIndex, endIndex));
     }
+
     return (
         <div className="home-section" id="houses">
+            {/* Filter */}
             <div className="home-filter-search">
                 <div className="home-filter">
                     <select onChange={(e) => setSort(e.target.value)} defaultValue={sort} >
@@ -60,6 +68,8 @@ export default function AllHomes() {
                     <input type="text" value={search} onChange={handleSearch} placeholder="جستجو کنید" />
                 </div>
             </div>
+
+            {/* HomeCard List Rendering */}
             <div className="homes">
                 {
                     result.slice(0, 3).map((home, index) => (
@@ -67,6 +77,8 @@ export default function AllHomes() {
                     ))
                 }
             </div>
+
+            {/* pagination btns */}
             <ul className="pagination__list">
                 {
                     Array.from({ length: Math.ceil(result.length / pagination) }).map((item, index) => (

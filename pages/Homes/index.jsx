@@ -1,5 +1,6 @@
 import HomeCard from "@/components/modules/HomeCard";
 import db from "@/data/db.json"
+import Link from "next/link";
 import { useEffect, useState } from "react";
 export default function AllHomes() {
     const [search, setSearch] = useState('');
@@ -39,7 +40,10 @@ export default function AllHomes() {
             }
         }
     }, [sort]);
-    
+    function pagainateHandler(event,page){
+        event.preventDefault();
+        console.log(page);
+    }
     return (
         <div className="home-section" id="houses">
             <div className="home-filter-search">
@@ -51,13 +55,14 @@ export default function AllHomes() {
                         <option value="meterage">بر اساس اندازه</option>
                     </select>
                 </div>
+
                 <div className="home-search">
                     <input type="text" value={search} onChange={handleSearch} placeholder="جستجو کنید" />
                 </div>
             </div>
             <div className="homes">
                 {
-                    result.map((home) => {
+                    result.slice(0,3).map((home) => {
                         return <HomeCard key={home.id} {...home} />
                     })
                 }
@@ -65,7 +70,9 @@ export default function AllHomes() {
             <ul className="pagination__list">
                 {
                     Array.from({length: Math.ceil(result.length / pagination) }).map((item,index)=>(
-                        <li key={index} className="pagination__item active"><a href="#" className="">{index+1}</a></li>
+                        <li key={index} onClick={(event)=>pagainateHandler(event,index+1)} className="pagination__item active">
+                            <a href="/asdsa" className="">{index+1}</a>
+                        </li>
                     ))
                 }
             </ul>

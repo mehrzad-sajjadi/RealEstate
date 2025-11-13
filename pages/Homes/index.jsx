@@ -6,7 +6,7 @@ export default function AllHomes() {
     const [search, setSearch] = useState('');
     const [result, setResult] = useState([...db.homes]);
     const [sort, setSort] = useState("-1");
-    const [pagination, setPagination] = useState(6);
+    const [pagination, setPagination] = useState([...db.homes].length);
     const pageSize = 3;
 
 
@@ -46,9 +46,9 @@ export default function AllHomes() {
 
     function pagainateHandler(event, page) {
         event.preventDefault();
-        const endIndex = page * 3;
-        const startIndex = endIndex - 3
-        console.log(db.homes.slice(startIndex, endIndex));
+        const endIndex = page * pageSize;
+        const startIndex = endIndex - pageSize;
+        setResult(db.homes.slice(startIndex, endIndex));
     }
 
     return (
@@ -72,7 +72,7 @@ export default function AllHomes() {
             {/* HomeCard List Rendering */}
             <div className="homes">
                 {
-                    result.slice(0, 3).map((home, index) => (
+                    result.slice(0, pageSize).map((home, index) => (
                         <HomeCard key={index} {...home} />
                     ))
                 }
@@ -81,9 +81,12 @@ export default function AllHomes() {
             {/* pagination btns */}
             <ul className="pagination__list">
                 {
-                    Array.from({ length: Math.ceil(result.length / pagination) }).map((item, index) => (
-                        <li key={index} onClick={(event) => pagainateHandler(event, index + 1)} className="pagination__item active">
-                            <a href="/asdsa" className="">{index + 1}</a>
+                    Array.from({ length: Math.ceil(pagination / pageSize) }).map((item, index) => (
+                        <li key={index} 
+                            onClick={(event) => pagainateHandler(event, index + 1)} 
+                            className="pagination__item active"
+                        >
+                            <a href="#" className="">{index + 1}</a>
                         </li>
                     ))
                 }

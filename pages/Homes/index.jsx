@@ -82,8 +82,8 @@ export default function AllHomes() {
             <ul className="pagination__list">
                 {
                     Array.from({ length: Math.ceil(pagination / pageSize) }).map((item, index) => (
-                        <li key={index} 
-                            onClick={(event) => pagainateHandler(event, index + 1)} 
+                        <li key={index}
+                            onClick={(event) => pagainateHandler(event, index + 1)}
                             className="pagination__item active"
                         >
                             <a href="#" className="">{index + 1}</a>
